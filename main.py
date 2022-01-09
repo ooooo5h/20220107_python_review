@@ -28,4 +28,7 @@ def send_fcm_notification(title, body):
     }
     
     # 3. 어떤 방식 + 실제 API 호출
-    requests.post(fcm_url, data=json.dumps(content), headers=fcm_headers)
+    result = requests.post(url=fcm_url, data=json.dumps(content), headers=fcm_headers)
+    print(f'FCM발송 결과 : {result}')
+    
+send_fcm_notification('안녕하세요', '파이썬 통해서 보내기')
