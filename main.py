@@ -3,6 +3,7 @@ import requests
 import json
 
 from pyfcm import FCMNotification
+from requests.packages.urllib3.util import Url
 
 
 # 함수 제작 : 보내줄 문구/본문 내용을 받아서 전송
@@ -46,3 +47,19 @@ def send_fcm_by_library(title, body):
     print(result)
     
 send_fcm_by_library('안녕하세요', '파이썬 pyFCM라이브러리로 전송합니다')
+
+def send_sms_message(phone, message):
+    aligo_url = 'https://apis.aligo.in/send/'
+    aligo_api_key = '알리고 키'
+
+    data = {
+        'key' : aligo_api_key,
+        'user_id' : '알리고아이디',
+        'sender' : '알리고등록된전화번호',
+        'receiver' : phone,
+        'msg' : message,
+        'testmode_yn' : 'y',
+    }    
+    
+    requests.post(url=aligo_url, data=data)
+send_sms_message('연락처적기 01090110390', '파이썬으로 문자간다 슝')
